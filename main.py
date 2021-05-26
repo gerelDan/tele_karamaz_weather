@@ -16,4 +16,4 @@ def get_text_messages(message):
 #print('Hello World')
 
 bot.polling(none_stop=True)
-© 2021 GitHub, Inc.
+#© 2021 GitHub, Inc.
