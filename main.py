@@ -56,7 +56,7 @@ def get_text_messages(message):
                                                f' "стандартном" городе или напишите название города в готором Вы сейчас')
     elif message.text.lower() == 'погода':
         city = cities[message.from_user.first_name]
-        bot.send_message(message.from_user.id, f'Привет {message.from_user.first_name}! Твой город {city}')
+        bot.send_message(message.from_user.id, f'О великий и могучий {message.from_user.first_name}! Твой город {city}')
         cod_loc = code_location(city, token_accu)
         you_weather = weather(cod_loc, token_accu)
         print_weather(you_weather, message)
