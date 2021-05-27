@@ -51,7 +51,7 @@ def send_welcome(message):
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
     if message.text.lower() == 'привет' or message.text.lower() ==  'здорова':
-        bot.send_message(message.from_user.id, f'О великий и могучи {message.from_user.first_name}! Позволь Я доложу '
+        bot.send_message(message.from_user.id, f'О великий и могучий {message.from_user.first_name}! Позвольте Я доложу '
                                                f' Вам о погоде! Напишите  слово "погода" и я напишу погоду в Вашем'
                                                f' "стандартном" городе или напишите название города в готором Вы сейчас')
     elif message.text.lower() == 'погода':
@@ -69,7 +69,8 @@ def get_text_messages(message):
             you_weather = weather(cod_loc, token_accu)
             print_weather(you_weather, message)
         except Exception as err:
-            bot.send_message(message.from_user.id, f'{message.from_user.first_name}! Я не нашел такого города!'
+            bot.send_message(message.from_user.id, f'{message.from_user.first_name}! Не вели казнить,'
+                                                   f' вели слово молвить! Я не нашел такого города!'
                                                    f'И получил ошибку {err}, попробуй другой город')
 
 bot.polling(none_stop=True)
