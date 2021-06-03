@@ -31,7 +31,7 @@ def weather(cod_loc: str, token_accu: str):
         dict_weather['temp'] = json_data[i]['Temperature']['Value']
     return dict_weather
 
-def  print_weather(dict_weather, message):
+def print_weather(dict_weather, message):
     bot.send_message(message.from_user.id, f'Разрешите доложить, Ваше сиятельство!'
                                            f' Температура сейчас {dict_weather["сейчас"]["temp"]}!'
                                            f' А на небе {dict_weather["сейчас"]["sky"]}.'
@@ -82,15 +82,15 @@ def yandex_weather(latitude, longitude, token_yandex: str):
                 'se': 'юго-восточное', 's': 'южное', 'sw': 'юго-западное', 'w': 'западное', 'с': 'штиль'}
 
     yandex_json = json.loads(yandex_req.text)
-    sutki = ['night', 'morning', 'day', 'evening']
+    day = ['night', 'morning', 'day', 'evening']
     pogoda = dict()
-    for vremya in sutki:
-        pogoda[vremya] = dict()
-        pogoda[vremya]['temp'] = yandex_json['forecasts'][0]['parts'][vremya]['temp_avg']
-        pogoda[vremya]['condition'] = conditions[yandex_json['forecasts'][0]['parts'][vremya]['condition']]
-        pogoda[vremya]['wind_dir'] = wind_dir[yandex_json['forecasts'][0]['parts'][vremya]['wind_dir']]
-        pogoda[vremya]['pressure_mm'] = yandex_json['forecasts'][0]['parts'][vremya]['pressure_mm']
-        pogoda[vremya]['humidity'] = yandex_json['forecasts'][0]['parts'][vremya]['humidity']
+    for time_of_day in day:
+        pogoda[time_of_day] = dict()
+        pogoda[time_of_day]['temp'] = yandex_json['forecasts'][0]['parts'][time_of_day]['temp_avg']
+        pogoda[time_of_day]['condition'] = conditions[yandex_json['forecasts'][0]['parts'][time_of_day]['condition']]
+        pogoda[time_of_day]['wind_dir'] = wind_dir[yandex_json['forecasts'][0]['parts'][time_of_day]['wind_dir']]
+        pogoda[time_of_day]['pressure_mm'] = yandex_json['forecasts'][0]['parts'][time_of_day]['pressure_mm']
+        pogoda[time_of_day]['humidity'] = yandex_json['forecasts'][0]['parts'][time_of_day]['humidity']
 
     pogoda['fact'] = dict()
     pogoda['fact']['temp'] = yandex_json['fact']['temp']
