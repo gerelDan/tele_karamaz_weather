@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: yandex-weather-api
+Version: 0.2.4
+Summary: Yandex Weather API python module
+Home-page: https://github.com/ASMfreaK/yandex_weather_api
+Author: Pavel Pletenev
+Author-email: cpp.create@gmail.com
+License: GPLv3
+Platform: any
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Development Status :: 4 - Beta
+Classifier: Natural Language :: English
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: voluptuous
+Requires-Dist: python-box
+Requires-Dist: aiohttp
+
+# yandex_weather_api
+
+Библиотека для доступа к API Яндекс Погоды. Для работы с необходим ключ
+[отсюда](https://developer.tech.yandex.ru/keys). Библиотека очень тонко
+обрамляет JSON-ответ сервера Yandex для
+[одного](https://tech.yandex.ru/weather/doc/dg/concepts/forecast-response-info-docpage/)
+и [другого](https://tech.yandex.ru/weather/doc/dg/concepts/forecast-response-test-docpage/) тарифов.
+
+Для запроса данных воспользуйтесь функциями
+`get` и `async_get`.
+Оба варианта принимают в качестве первого
+аргумента объект сессии из библиотек `requests`
+и `aiohttp` для выполнения синхронных или
+асинхронных запросов соотвественно.
+
+Погоду можно получать из командной строки, воспользовавшись утилитой yandex_weather_api. Запустите её с аргументом `--help`, чтобы получить информацию о том, какие подкомманды она подерживает.
+
+

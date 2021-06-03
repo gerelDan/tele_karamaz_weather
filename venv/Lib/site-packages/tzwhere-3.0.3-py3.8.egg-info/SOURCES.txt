@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+tzwhere/__init__.py
+tzwhere/tz_world.json.gz
+tzwhere/tz_world_shortcuts.json
+tzwhere/tzwhere.py
+tzwhere.egg-info/PKG-INFO
+tzwhere.egg-info/SOURCES.txt
+tzwhere.egg-info/dependency_links.txt
+tzwhere.egg-info/requires.txt
+tzwhere.egg-info/top_level.txt
