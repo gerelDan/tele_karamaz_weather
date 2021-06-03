@@ -2,12 +2,12 @@ import json
 import telebot
 
 import requests as req
-from tokensy import tokenoga, token_accu, token_yandex
+from tokensy import token_bot, token_accu, token_yandex
 
 from geopy import geocoders
 
 
-token = tokenoga
+token = token_bot
 
 def code_location(location: str, token_accu: str):
     url_location = f'http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=' \
