@@ -107,7 +107,7 @@ def add_city(message):
     try:
         latitude, longitude = geo_pos(message.text.lower().split('город ')[1])
         global cities
-        cities[message.from_user.first_name] = message.text.lower().split('город ')[1]
+        cities[message.from_user.id] = message.text.lower().split('город ')[1]
         with open('cities.json', 'w') as f:
             f.write(json.dumps(cities))
         return cities, 0
@@ -135,8 +135,8 @@ def get_text_messages(message):
                          f' Вам о погоде! Напишите  слово "погода" и я напишу погоду в Вашем'
                          f' "стандартном" городе или напишите название города в готором Вы сейчас')
     elif message.text.lower() == 'погода':
-        if message.from_user.first_name in cities.keys():
-            city = cities[message.from_user.first_name]
+        if message.from_user.id in cities.keys():
+            city = cities[message.from_user.id]
             bot.send_message(message.from_user.id, f'О великий и могучий {message.from_user.first_name}!'
                                                    f' Твой город {city}')
             latitude, longitude = geo_pos(city)
@@ -154,7 +154,7 @@ def get_text_messages(message):
         if flag == 0:
             bot.send_message(message.from_user.id, f'О великий и могучий {message.from_user.first_name}!'
                                                    f' Теперь я знаю Ваш город! это'
-                                                   f' {cities[message.from_user.first_name]}')
+                                                   f' {cities[message.from_user.id]}')
         else:
             bot.send_message(message.from_user.id, f'О великий и могучий {message.from_user.first_name}!'
                                                    f' Что то пошло не так :(')
@@ -175,3 +175,4 @@ def get_text_messages(message):
 
 
 bot.polling(none_stop=True)
+
