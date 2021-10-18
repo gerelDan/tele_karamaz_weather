@@ -2,9 +2,11 @@ import json
 import telebot
 import requests as req
 from geopy import geocoders
-from tokensy import token_bot, token_accu, token_yandex
+from os import environ
 
-token = token_bot
+token = environ['token_bot']
+token_accu = environ['token_accu']
+token_yandex = environ['token_yandex']
 
 
 def code_location(latitude: str, longitude: str, token_accu: str):
@@ -16,8 +18,8 @@ def code_location(latitude: str, longitude: str, token_accu: str):
     return code
 
 
-def weather(cod_loc: str, token_accu: str):
-    url_weather = f'http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/{cod_loc}?' \
+def weather(coord_loc: str, token_accu: str):
+    url_weather = f'http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/{coord_loc}?' \
                   f'apikey={token_accu}&language=ru&metric=True'
     response = req.get(url_weather, headers={"APIKey": token_accu})
     json_data = json.loads(response.text)
@@ -86,21 +88,21 @@ def yandex_weather(latitude, longitude, token_yandex: str):
         parts['condition'] = conditions[parts['condition']]
         parts['wind_dir'] = wind_dir[parts['wind_dir']]
 
-    pogoda = dict()
+    weather = dict()
     params = ['condition', 'wind_dir', 'pressure_mm', 'humidity']
     for parts in yandex_json['forecast']['parts']:
-        pogoda[parts['part_name']] = dict()
-        pogoda[parts['part_name']]['temp'] = parts['temp_avg']
+        weather[parts['part_name']] = dict()
+        weather[parts['part_name']]['temp'] = parts['temp_avg']
         for param in params:
-            pogoda[parts['part_name']][param] = parts[param]
+            weather[parts['part_name']][param] = parts[param]
 
-    pogoda['fact'] = dict()
-    pogoda['fact']['temp'] = yandex_json['fact']['temp']
+    weather['fact'] = dict()
+    weather['fact']['temp'] = yandex_json['fact']['temp']
     for param in params:
-        pogoda['fact'][param] = yandex_json['fact'][param]
+        weather['fact'][param] = yandex_json['fact'][param]
 
-    pogoda['link'] = yandex_json['info']['url']
-    return pogoda
+    weather['link'] = yandex_json['info']['url']
+    return weather
 
 
 def add_city(message):
@@ -140,8 +142,8 @@ def get_text_messages(message):
             bot.send_message(message.from_user.id, f'О великий и могучий {message.from_user.first_name}!'
                                                    f' Твой город {city}')
             latitude, longitude = geo_pos(city)
-            cod_loc = code_location(latitude, longitude, token_accu)
-            you_weather = weather(cod_loc, token_accu)
+            coord_loc = code_location(latitude, longitude, token_accu)
+            you_weather = weather(coord_loc, token_accu)
             print_weather(you_weather, message)
             yandex_weather_x = yandex_weather(latitude, longitude, token_yandex)
             print_yandex_weather(yandex_weather_x, message)
@@ -163,8 +165,8 @@ def get_text_messages(message):
             city = message.text
             bot.send_message(message.from_user.id, f'Привет {message.from_user.first_name}! Твой город {city}')
             latitude, longitude = geo_pos(city)
-            cod_loc = code_location(latitude, longitude, token_accu)
-            you_weather = weather(cod_loc, token_accu)
+            coord_loc = code_location(latitude, longitude, token_accu)
+            you_weather = weather(coord_loc, token_accu)
             print_weather(you_weather, message)
             yandex_weather_x = yandex_weather(latitude, longitude, token_yandex)
             print_yandex_weather(yandex_weather_x, message)
