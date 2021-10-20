@@ -18,8 +18,8 @@ def code_location(latitude: str, longitude: str, token_accu: str):
     return code
 
 
-def weather(coord_loc: str, token_accu: str):
-    url_weather = f'http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/{coord_loc}?' \
+def weather(code_loc: str, token_accu: str):
+    url_weather = f'http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/{code_loc}?' \
                   f'apikey={token_accu}&language=ru&metric=True'
     response = req.get(url_weather, headers={"APIKey": token_accu})
     json_data = json.loads(response.text)
@@ -142,8 +142,8 @@ def get_text_messages(message):
             bot.send_message(message.from_user.id, f'О великий и могучий {message.from_user.first_name}!'
                                                    f' Твой город {city}')
             latitude, longitude = geo_pos(city)
-            coord_loc = code_location(latitude, longitude, token_accu)
-            you_weather = weather(coord_loc, token_accu)
+            code_loc = code_location(latitude, longitude, token_accu)
+            you_weather = weather(code_loc, token_accu)
             print_weather(you_weather, message)
             yandex_weather_x = yandex_weather(latitude, longitude, token_yandex)
             print_yandex_weather(yandex_weather_x, message)
@@ -165,8 +165,8 @@ def get_text_messages(message):
             city = message.text
             bot.send_message(message.from_user.id, f'Привет {message.from_user.first_name}! Твой город {city}')
             latitude, longitude = geo_pos(city)
-            coord_loc = code_location(latitude, longitude, token_accu)
-            you_weather = weather(coord_loc, token_accu)
+            code_loc = code_location(latitude, longitude, token_accu)
+            you_weather = weather(code_loc, token_accu)
             print_weather(you_weather, message)
             yandex_weather_x = yandex_weather(latitude, longitude, token_yandex)
             print_yandex_weather(yandex_weather_x, message)
