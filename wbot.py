@@ -1,9 +1,7 @@
 from os import environ, path
 
-# import asyncio
 import logging
 import sys
-#from os import getenv
 
 from aiogram import Bot, Dispatcher, html
 from aiogram.client.default import DefaultBotProperties
@@ -11,10 +9,9 @@ from aiogram.enums import ParseMode
 from aiogram.filters import CommandStart
 from aiogram.types import Message
 import json
-import tokensy
 from function_local import *
 
-# TOKEN = str(getenv(environ['token_bot']))  # tokensy.environ['token_bot']
+
 TOKEN = environ['token_bot']
 token_accu = environ['token_accu']
 token_yandex = environ['token_yandex']
