@@ -1,11 +1,9 @@
 # import sys
 # sys.path.insert(0, '/usr/lib/python3.10/site-packages')
 
-# import telebot
 from function_import import *
 from os import environ
 import asyncio
-# from tokensy import environ
 
 
 token = environ['token_bot']

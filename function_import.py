@@ -10,7 +10,6 @@ import json
 from datetime import datetime  # , timedelta
 import asyncio
 import aiohttp
-# from tokensy import *
 
 
 async def code_location(latitude: str, longitude: str, token_accu: str):
