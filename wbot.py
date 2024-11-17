@@ -51,7 +51,7 @@ async def echo_handler(message: Message) -> None:
                                  f' или напишите название города в котором Вы сейчас')
         case ['погода']:
             if user_id in cities.keys():
-                city = cities[user_id]['city']
+                city = cities[user_id]
                 await message.answer(f'О великий и могучий {message.from_user.first_name}!'
                                      f' Твой город {city}')
                 await big_weather(message, sky, cities, None)
